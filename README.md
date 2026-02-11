@@ -84,3 +84,8 @@ or:
 sample = {'Na+': 0.01, 'Cl-': 0.01, 'Ca2+': 0.005}
 results = calculate_sound_speed(sample, T=20, P=0.101325)
 print("Total sound speed:", results['W'], "m/s")
+
+## Installation
+
+pip install git+https://github.com/yourusername/wsigma.git
+from wsigma import calculate_sound_speed
