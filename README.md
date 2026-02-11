@@ -1,4 +1,4 @@
-## WSIGMA – evaluation of sound speed at given pressure, temperature and chemical composition
+# WSIGMA – evaluation of sound speed at given pressure, temperature and chemical composition
 
 WSIGMA is a Python implementation for calculating sound speed in freshwater 
 with dissolved ions based on experimentally retrieved coefficients.
@@ -12,12 +12,23 @@ The tool combines:
 The implementation follows the methodology described in:
 [Journal reference here]
 
-# Wbel(T, P) calculates the speed of sound in pure water based on (Belogolskii et al., 1999).
+
+## List of available ions:
+Na+, Cl-, K+, F-, Mg2+, Mn2+, Ca2+, Al3+, NH4+, CO3^-2, SO4^-2, Fe3+, HCO3-, OH-, H+, NO3-
+
+
+## Validity Range
+
+- Temperature: 1–30 °C
+- Pressure: limnic range (Belogolskii formulation valid 0–40 °C, 0.1–60 MPa)
+- Solute concentration: up to 0.05 mol/L (~5 mS/cm)
+
+## Wbel(T, P) calculates the speed of sound in pure water based on (Belogolskii et al., 1999).
 
 Parameters: T: Temperature in [°C]; P: Pressure in [MPa]
 Returns: Sound speed in [m/s]
 
-# calculate_sound_speed(molarities, T, P, save_file=None) calculates total sound speed
+## calculate_sound_speed(molarities, T, P, save_file=None) calculates total sound speed
 
 Parameters: composition in [mol/L]; T: temperature in [°C]; P: pressure in [MPa]; save_file (str, optional): path to save results as a text file
 
@@ -36,31 +47,16 @@ pressure: pressure in [MPa];
 total_deltaW: Sound speed excess due to dissolved ions in [m/s];
 W_belogolskii: Sound speed of pure water (Belogolskii et al., 1999) in [m/s];
 W: Total sound speed in [m/s];
-sigma0: specific contribution of the dissolved electrolytes at 25°C in 	[(m/s) / (mS/cm)]
-sigma1	m/s per (K·mS/cm)	temperature dependence coefficient
+sigma0: specific contribution of the dissolved electrolytes at 25°C in 	[(m/s) / (mS/cm)];
+sigma1:	temperature dependence coefficient in [(m/s) / (K·mS/cm)];
 
-dict: {
-                'temperature': T,
-                'pressure': P,
-                'total_deltaW': total excess sound speed,
-                'W_belogolskii': pure water sound speed,
-                'W': total sound speed,
-                'sigma0': sigma0,
-                'sigma1': sigma1,
-                'molarities': molarities
-                    }
-
-
-# List of available ions:
-Na+, Cl-, K+, F-, Mg2+, Mn2+, Ca2+, Al3+, (NH4)+, (CO3)-2, (SO4)-2, Fe3+, (HCO3)-, OH-, H+, (NO3)-
-
-
-# Validity Range
-
-- Temperature: 1–30 °C
-- Pressure: limnic range (Belogolskii formulation valid 0–40 °C, 0.1–60 MPa)
-- Solute concentration: up to 0.05 mol/L (~5 mS/cm)
-
-# 
-## Installation
-
+results = {
+        'temperature': T,
+        'pressure': P,
+        'total_deltaW': total_deltaW,
+        'W_belogolskii': W_bel,
+        'W': W_total,
+        'sigma0': sigma0,
+        'sigma1': sigma1,
+        'composition': composition
+    }
