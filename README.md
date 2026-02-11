@@ -87,5 +87,5 @@ print("Total sound speed:", results['W'], "m/s")
 
 ## Installation
 
-pip install git+https://github.com/yourusername/wsigma.git
+pip install git+https://github.com/humpty-dumpty-rgb/wsigma.git
 from wsigma import calculate_sound_speed
