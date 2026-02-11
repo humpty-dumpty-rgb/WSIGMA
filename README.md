@@ -14,14 +14,14 @@ The implementation follows the methodology described in:
 
 # Wbel(T, P) calculates the speed of sound in pure water based on (Belogolskii et al., 1999).
 
-Parameters: T: Temperature in °C, P: Pressure in MPa
-Returns: Sound speed in m/s
+Parameters: T: Temperature in [°C], P: Pressure in [MPa]
+Returns: Sound speed in [m/s]
 
+# calculate_sound_speed(molarities, T, P, save_file=None) calculates total sound speed
 
-# List of available ions:
-Na+, Cl-, K+, F-, Mg2+, Mn2+, Ca2+, Al3+, (NH4)+, (CO3)-2, (SO4)-2, Fe3+, (HCO3)-, OH-, H+, (NO3)-
+Parameters: composition in [mol/L], T: Temperature in [°C], P: Pressure in [MPa], save_file (str, optional): Path to save results as a text file
 
-Example molarity dictionary:
+Example chemical composition dictionary:
 
 {
     'Na+': 0.01,
@@ -29,7 +29,26 @@ Example molarity dictionary:
     'Ca2+': 0.005
 }
 
+Returns: a dictionary with: total_deltaW m/s, Sound speed excess due to dissolved ions
+W_belogolskii	m/s	Sound speed of pure water (Belogolskii et al., 1999)
+W	m/s	Total sound speed in the sample
+sigma0	m/s per (mS/cm)	σ₀ conductivity-normalized sound speed coefficient
+sigma1	m/s per (K·mS/cm)	σ₁ temperature derivative of conductivity-normalized coefficient
 
+dict: {
+                'temperature': T,
+                'pressure': P,
+                'total_deltaW': total excess sound speed,
+                'W_belogolskii': pure water sound speed,
+                'W': total sound speed,
+                'sigma0': sigma0,
+                'sigma1': sigma1,
+                'molarities': molarities
+                    }
+
+
+# List of available ions:
+Na+, Cl-, K+, F-, Mg2+, Mn2+, Ca2+, Al3+, (NH4)+, (CO3)-2, (SO4)-2, Fe3+, (HCO3)-, OH-, H+, (NO3)-
 
 
 # Validity Range
