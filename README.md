@@ -14,12 +14,12 @@ The implementation follows the methodology described in:
 
 # Wbel(T, P) calculates the speed of sound in pure water based on (Belogolskii et al., 1999).
 
-Parameters: T: Temperature in [°C], P: Pressure in [MPa]
+Parameters: T: Temperature in [°C]; P: Pressure in [MPa]
 Returns: Sound speed in [m/s]
 
 # calculate_sound_speed(molarities, T, P, save_file=None) calculates total sound speed
 
-Parameters: composition in [mol/L], T: Temperature in [°C], P: Pressure in [MPa], save_file (str, optional): Path to save results as a text file
+Parameters: composition in [mol/L]; T: temperature in [°C]; P: pressure in [MPa]; save_file (str, optional): path to save results as a text file
 
 Example chemical composition dictionary:
 
@@ -29,11 +29,15 @@ Example chemical composition dictionary:
     'Ca2+': 0.005
 }
 
-Returns: a dictionary with: total_deltaW m/s, Sound speed excess due to dissolved ions
-W_belogolskii	m/s	Sound speed of pure water (Belogolskii et al., 1999)
-W	m/s	Total sound speed in the sample
-sigma0	m/s per (mS/cm)	σ₀ conductivity-normalized sound speed coefficient
-sigma1	m/s per (K·mS/cm)	σ₁ temperature derivative of conductivity-normalized coefficient
+Returns a dictionary with:
+
+temperature: temperature in [°C];
+pressure: pressure in [MPa];
+total_deltaW: Sound speed excess due to dissolved ions in [m/s];
+W_belogolskii: Sound speed of pure water (Belogolskii et al., 1999) in [m/s];
+W: Total sound speed in [m/s];
+sigma0: specific contribution of the dissolved electrolytes at 25°C in 	[(m/s) / (mS/cm)]
+sigma1	m/s per (K·mS/cm)	temperature dependence coefficient
 
 dict: {
                 'temperature': T,
