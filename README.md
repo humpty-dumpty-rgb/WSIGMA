@@ -23,32 +23,44 @@ Na+, Cl-, K+, F-, Mg2+, Mn2+, Ca2+, Al3+, NH4+, CO3^-2, SO4^-2, Fe3+, HCO3-, OH-
 - Pressure: limnic range (Belogolskii formulation valid 0–40 °C, 0.1–60 MPa)
 - Solute concentration: up to 0.05 mol/L (~5 mS/cm)
 
-## Wbel(T, P) calculates the speed of sound in pure water based on (Belogolskii et al., 1999).
 
-Parameters: T: Temperature in [°C]; P: Pressure in [MPa]
-Returns: Sound speed in [m/s]
+## Functions
 
-## calculate_sound_speed(molarities, T, P, save_file=None) calculates total sound speed
+### Wbel(T, P) calculates the speed of sound in pure water based on (Belogolskii et al., 1999).
 
-Parameters: composition in [mol/L]; T: temperature in [°C]; P: pressure in [MPa]; save_file (str, optional): path to save results as a text file
+Parameters:
+- T: Temperature in [°C];
+- P: Pressure in [MPa]
+  
+Returns:
+- Sound speed in [m/s]
+
+### calculate_sound_speed(molarities, T, P, save_file=None) calculates total sound speed
+
+Parameters:
+- Composition in [mol/L];
+- T: temperature in [°C];
+- P: pressure in [MPa];
+- save_file (str, optional): path to save results as a text file
 
 Example chemical composition dictionary:
 
-{
-    'Na+': 0.01,
-    'Cl-': 0.01,
-    'Ca2+': 0.005
-}
+sample =
+    {
+        'Na+': 0.01,
+        'Cl-': 0.01,
+        'Ca2+': 0.005
+    }
 
-Returns a dictionary with:
-
-temperature: temperature in [°C];
-pressure: pressure in [MPa];
-total_deltaW: Sound speed excess due to dissolved ions in [m/s];
-W_belogolskii: Sound speed of pure water (Belogolskii et al., 1999) in [m/s];
-W: Total sound speed in [m/s];
-sigma0: specific contribution of the dissolved electrolytes at 25°C in 	[(m/s) / (mS/cm)];
-sigma1:	temperature dependence coefficient in [(m/s) / (K·mS/cm)];
+Returns: 
+a dictionary containing:
+- temperature: temperature in [°C];
+- pressure: pressure in [MPa];
+- total_deltaW: Sound speed excess due to dissolved ions in [m/s];
+- W_belogolskii: Sound speed of pure water (Belogolskii et al., 1999) in [m/s];
+- W: Total sound speed in [m/s];
+- sigma0: specific contribution of the dissolved electrolytes at 25°C in 	[(m/s) / (mS/cm)];
+- sigma1:	temperature dependence coefficient in [(m/s) / (K·mS/cm)];
 
 results = {
         'temperature': T,
@@ -60,3 +72,15 @@ results = {
         'sigma1': sigma1,
         'composition': composition
     }
+
+## Example usage
+
+sample = {'Na+': 0.01, 'Cl-': 0.01, 'Ca2+': 0.005}
+result = calculate_sound_speed(sample, T=20, P=0.101325)
+print(result)
+
+or:
+
+sample = {'Na+': 0.01, 'Cl-': 0.01, 'Ca2+': 0.005}
+results = calculate_sound_speed(sample, T=20, P=0.101325)
+print("Total sound speed:", results['W'], "m/s")
